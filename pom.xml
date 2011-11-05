@@ -1,0 +1,312 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.cic.unb</groupId>
+	<artifactId>biocloud-superpom</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1.0</version>
+	<inceptionYear>2011</inceptionYear>
+	<name>biocloud::superpom</name>	
+	<url>http://www.cic.unb.br</url>
+	
+	<description>
+        Biological Sequence in Federated Cloud Computing Environment
+    </description>
+
+	<organization>
+		<name>University of Brasilia</name>
+		<url>http://www.cic.unb.br</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>alessandro.leite</id>
+			<name>Alessandro Leite</name>
+			<email>alessandro.leite@alessandro.cc</email>
+			<timezone>-3</timezone>
+			<roles>
+				<role>Software Developer</role>
+				<role>Phd Student</role>
+			</roles>
+		</developer>		
+	</developers>
+	
+	<modules>
+		<module>core</module>
+		<module>appengine</module>		
+		<module>ec2</module>
+		<module>openshift</module>
+		<module>heroku</module>
+	</modules>
+
+	<repositories>
+		<repository>
+			<id>jboss</id>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>gwt-maven</id>
+			<url>
+                http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
+            </url>
+		</repository>
+		<repository>
+			<id>maven-repository.dev.java.net</id>
+			<url>http://download.java.net/maven/1</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>maven.mirror</id>
+			<name>maven.mirror</name>
+			<url>http://maven.vidageek.net/net/vidageek/mirror</url>
+		</repository>
+		<repository>
+			<id>projectlombok.org</id>
+			<url>http://projectlombok.org/mavenrepo</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>maven.jahia</id>
+			<name>maven.jahia</name>
+			<url>http://maven.jahia.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>mc-release</id>
+			<name>Local Maven repository of releases</name>
+			<url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>mc-snapshot</id>
+			<name>Local Maven repository of snapshots</name>
+			<url>http://mc-repo.googlecode.com/svn/maven2/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>gmultipart</id>
+			<url>http://gmultipart.googlecode.com/svn/repo/m2</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>mc-release</id>
+			<url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>mc-snapshot</id>
+			<url>http://mc-repo.googlecode.com/svn/maven2/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>mc-thirdparty</id>
+			<url>http://mc-repo.googlecode.com/svn/maven2/thirdparty</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>sonatype-plugin-repo</id>
+			<name>sonatype plugin repository</name>
+			<url>http://oss.sonatype.org/content/repositories/github-releases</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>gwt-maven-plugins</id>
+			<url>
+                http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/
+            </url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>bees-plugins-snapshots</id>
+			<url>http://repository-cloudbees.forge.cloudbees.com/public-snapshot/  </url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>		
+	</pluginRepositories>
+
+	<dependencies>
+		<!-- Test Scope -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8</version>
+			<scope>test</scope>
+		</dependency>							
+	</dependencies>
+	
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<defaultGoal>package</defaultGoal>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		
+		<plugins>
+			<plugin>
+				<groupId>com.mycila.maven-license-plugin</groupId>
+				<artifactId>maven-license-plugin</artifactId>
+				<version>1.9.0</version>
+				<configuration>
+					<header>src/etc/header.txt</header>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>								
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<source>${source.version}</source>
+					<target>${source.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature> org.maven.ide.eclipse.maven2Nature</projectnature>
+						<projectnature> org.eclipse.jem.workbench.JavaEMFNature</projectnature>
+						<projectnature> org.eclipse.wst.jsdt.core.jsNature </projectnature>
+						<projectnature> com.google.appengine.eclipse.core.gaeNature </projectnature>
+						<projectnature> com.google.gdt.eclipse.core.webAppNature </projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand> org.maven.ide.eclipse.maven2Builder </buildcommand>
+						<buildcommand> org.eclipse.wst.jsdt.core.javascriptValidator </buildcommand>
+						<buildcommand> com.google.appengine.eclipse.core.enhancerbuilder </buildcommand>
+						<buildcommand> com.google.appengine.eclipse.core.projectValidator </buildcommand>
+						<buildcommand> com.google.gdt.eclipse.core.webAppProjectValidator </buildcommand>
+						<forceRecheck>true</forceRecheck>
+					</additionalBuildcommands>
+					<useProjectReferences>true</useProjectReferences>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0</version>
+			</plugin>			
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<targetJdk>${source.version}</targetJdk>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<tags>
+						<tag>TODO</tag>
+						<tag>FIXME</tag>
+						<tag>@deprecated</tag>
+					</tags>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+		<project.build.java.target>1.6</project.build.java.target>
+		<mojo.java.target>1.6</mojo.java.target>
+		<source.version>1.6</source.version>	
+		<joda-time.version>2.0</joda-time.version>
+		<guava.version>10.0-rc2</guava.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<mirror.version>1.5.1</mirror.version>
+		<biocloud-core.version>0.1.0</biocloud-core.version>
+	</properties>
+</project>

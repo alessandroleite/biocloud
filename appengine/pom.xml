@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+	   <groupId>br.cic.unb</groupId>
+	    <artifactId>biocloud-superpom</artifactId>
+	    <version>0.1.0</version>
+	</parent>	
+	
+	<groupId>br.cic.unb</groupId>
+	<artifactId>biocloud-appengine</artifactId>
+	<packaging>jar</packaging>
+	<version>0.1.0</version>
+	<name>biocloud::appengine</name>	
+
+	<dependencies>
+		<!-- Test scope -->
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-stubs</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-testing</artifactId>
+			<version>${gae.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Compile Scope -->	
+		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-gwt</artifactId>
+			<version>${guava.version}</version>
+			<scope>compile</scope>
+		</dependency>	
+				
+		<dependency>
+			<groupId>br.cic.unb</groupId>
+			<artifactId>biocloud-core</artifactId>
+			<version>${biocloud-core.version}</version>
+			<scope>compile</scope>
+		</dependency>
+							
+		<!-- Runtime Scope -->
+
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.9.0.GA</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Provided Scope -->
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-java-sdk</artifactId>
+			<version>${gae.version}</version>
+			<type>zip</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-labs</artifactId>
+			<version>${gae.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
+			<version>${gae.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>	
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+	</dependencies>
+	<build>
+		<plugins>						
+			<plugin>
+				<groupId>net.kindleit</groupId>
+				<artifactId>maven-gae-plugin</artifactId>
+				<version>${maven.gae.plugin.version}</version>
+				<configuration>
+					<severity>0</severity>
+					<serverId>${google.app.id}</serverId>
+					<sdkDir>${appengine.sdk.root}</sdkDir>
+					<appDir>${basedir}/target/${project.artifactId}-${project.version}</appDir>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>net.kindleit</groupId>
+						<artifactId>gae-runtime</artifactId>
+						<version>${gae.runtime}</version>
+						<type>pom</type>
+					</dependency>
+				</dependencies>
+			</plugin>										
+		</plugins>
+	</build>
+	<properties>
+		<gae.version>1.5.2</gae.version>
+		<gae.runtime>1.5.2</gae.runtime>
+		<maven.gae.plugin.version>0.8.4</maven.gae.plugin.version>			<gae.home>${settings.localRepository}/com/google/appengine/appengine-java-sdk/${gae.version}/appengine-java-sdk-${gae.version}</gae.home>
+		<google.app.id>appengine.google.com</google.app.id>
+		<jst.web>2.5</jst.web>
+		<gwt.version>2.4.0-rc1</gwt.version>
+	</properties>
+</project>

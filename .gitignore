@@ -1,0 +1,11 @@
+.idea
+.project
+.classpath
+.settings
+.externalToolBuilders
+target
+src/main/webapp/WEB-INF/lib/
+src/main/webapp/WEB-INF/classes
+src/main/webapp/WEB-INF/deploy
+.DS_Store
+web/
